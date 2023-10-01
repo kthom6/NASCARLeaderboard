@@ -1,0 +1,45 @@
+:root {
+    --Color_DarkGray: #39393A;
+    --Color_Blue: #001F5B;
+    --Color_Red: #D50000;
+    --Color_Yellow: #ffd600;
+    --Color_White: #ffffff;
+    --Color_Green: #009631;
+    --Color_LightYellow: #ffe65e;
+    --Color_LightGray: #e6e6e6;
+}
+
+html{
+    height: 130%;
+    background-color: var(--Color_DarkGray);
+}
+
+.leaderboard{
+    background-color: #222222 ;
+    width: 600px;
+    font-size: 16px;
+}
+
+.raceDetails{
+    width: 600px;
+    text-align: center;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
+
+table {
+    border-collapse: collapse;
+    color: #c3c3c3;
+}
+
+th, td {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.leaderboard tbody tr:nth-child(even) {
+  background-color: #2d2d2e;
+}
+
+.leaderboard tbody tr:hover {background-color: #4c4c4d;}
