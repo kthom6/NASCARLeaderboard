@@ -75,7 +75,7 @@ const createLeaderboard = (data) => {
         if (driverName == "AJ Allmendinger"
             || driverName == "Ross Chastain (P)"
             || driverName == "Mike Rockenfeller"
-            || driverName == "") {
+            || driverName == "Chase Elliott (P)") {
 //            driverHighlight = $("html").css("--Color_LightGray");
             driverHighlight = "#606061"
         } else {
