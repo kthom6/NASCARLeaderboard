@@ -28,7 +28,22 @@ const createLeaderboard = (data) => {
         let driverPosition = driver.running_position;
         let driverDelta = driver.delta;
         let driverPitStops = driver.pit_stops;
-        let lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
+        let lastPitLap;
+
+        if (driver.pit_stops.length > 1) {
+            lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
+        } else {
+            lastPitLap = 0;
+        }
+
+//        if (driverPitStops.hasOwnProperty('driverPitStops')) {
+//            let lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
+//        } else {
+//            let lastPitLap = 0;
+//        }
+
+//        let lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
+
         let averagePos = driver.average_running_position;
         let manufacturer = driver.vehicle_manufacturer;
         let driverNum = driver.vehicle_number;
@@ -57,10 +72,10 @@ const createLeaderboard = (data) => {
          };
 
         var driverHighlight;
-        if (driverName == "* Riley Herbst(i)"
-            || driverName == "William Byron (P)"
-            || driverName == "Todd Gilliland"
-            || driverName == "Ty Dillon") {
+        if (driverName == "AJ Allmendinger"
+            || driverName == "Ross Chastain (P)"
+            || driverName == "Mike Rockenfeller"
+            || driverName == "") {
 //            driverHighlight = $("html").css("--Color_LightGray");
             driverHighlight = "#606061"
         } else {
