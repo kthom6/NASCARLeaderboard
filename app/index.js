@@ -109,8 +109,8 @@ const createLeaderboard = (data) => {
                 case 3: // out of race (?)
                     onTrackHighlight = "#8F0000";
                     break
-                case 6: // looked like status 6 happened before status 3, 6 = pushing to garage?, Stenhouse status 6 when car on fire
-                    onTrackHighlight = "#8F0000";
+                case 6: // looked like status 6 happened before status 3, 6 = pushing to garage?, Stenhouse status 6 when car on fire and never went to 3
+                    onTrackHighlight = "#B80000"; // brighter red to study
                     break
                 default:
                     onTrackHighlight = "#FF10F0"; //neon pink to alert me to fix
@@ -204,8 +204,8 @@ const setUp = () => {
 const updateContent = () => {
     setUp();
 
-    // Fetch data every 10 seconds (source only refreshes every 30 seconds)
-    setInterval(setUp, 10000);
+    // Fetch data every 5 seconds (source only refreshes every 30 seconds)
+    setInterval(setUp, 5000);
 
     getLiveOps();
 
