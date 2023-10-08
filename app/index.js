@@ -36,15 +36,10 @@ const createLeaderboard = (data) => {
             lastPitLap = 0;
         }
 
-//        if (driverPitStops.hasOwnProperty('driverPitStops')) {
-//            let lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
-//        } else {
-//            let lastPitLap = 0;
-//        }
 
-//        let lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
-
-        let averagePos = driver.average_running_position;
+        let lastLapTime = driver.last_lap_time
+        let averagePos = driver.average_running_position.toFixed(1);
+        let startingPos = driver.starting_position;
         let manufacturer = driver.vehicle_manufacturer;
         let driverNum = driver.vehicle_number;
         let dvpClock = driver.is_on_dvp;
@@ -109,8 +104,10 @@ const createLeaderboard = (data) => {
                 <td><img src="media/${manufacturerIMG}" width="20px" height="7px"></td>
                 <td style="width: 220px;background-color: ${driverHighlight};">${driverName}</td>
                 <td style="width: 60px;text-align:right;">${driverDelta}</td>
+                <td style="width: 60px;text-align:right;">${lastLapTime}</td>
                 <td style="width: 60px;text-align:right;">${lastPitLap}</td>
                 <td style="width: 60px;text-align:right;">${averagePos}</td>
+                <td style="width: 60px;text-align:right;">${startingPos}</td>
                 <td style="width: 45px;background-color: ${onTrackHighlight};"></td>
                 <td style="width: 45px;background-color: ${dvpClockHighlight};"></td>
             </tr>`);
