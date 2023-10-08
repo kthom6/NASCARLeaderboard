@@ -16,12 +16,12 @@ html{
 
 .leaderboard{
     background-color: #222222 ;
-    width: 600px;
+    width: 650px;
     font-size: 16px;
 }
 
 .raceDetails{
-    width: 600px;
+    width: 650px;
     text-align: center;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */

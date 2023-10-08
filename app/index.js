@@ -1,12 +1,7 @@
 //https://cf.nascar.com/live/feeds/live-feed.json
 
 var liveFeedData;
-
-const successfullyExecutedAPI = (data) => {
-    console.log("successAPI ", data);
-    liveFeedData = data;
-
-};
+var liveOps;
 
 // This issues the GET request
 const getLiveFeed = () => {
@@ -14,7 +9,22 @@ const getLiveFeed = () => {
       url: "https://cf.nascar.com/live/feeds/live-feed.json",
       dataType: "json",
       async: false, // Set this to false for synchronous request
-      success: successfullyExecutedAPI
+      success:  function(data){
+            console.log("getLiveFeed success ", data);
+            liveFeedData = data;
+        }
+    });
+};
+
+const getLiveOps = () => {
+  $.ajax({
+      url: "https://cf.nascar.com/live-ops/live-ops.json",
+      dataType: "json",
+      async: false, // Set this to false for synchronous request
+      success: function(data){
+        console.log("getLiveOps success ", data);
+        liveOps = data;
+      }
     });
 };
 
@@ -28,10 +38,13 @@ const createLeaderboard = (data) => {
         let driverPosition = driver.running_position;
         let driverDelta = driver.delta;
         let driverPitStops = driver.pit_stops;
-        let lastPitLap;
 
-        if (driver.pit_stops.length > 1) {
-            lastPitLap = driverPitStops[driverPitStops.length - 1].pit_in_lap_count;
+        let lastPitLap;
+        let driverPitStopsFiltered;
+
+        if (driverPitStops.length > 1) {
+            driverPitStopsFiltered = driverPitStops.filter(v=> v.pit_in_elapsed_time > 0 && v.pit_in_leader_lap != currentLap); // filters out 0 second pit stops
+            lastPitLap = driverPitStopsFiltered[driverPitStopsFiltered.length - 1].pit_in_leader_lap; //pit_in_lap_count is driver's lap, pit_in_leader_lap is race lap
         } else {
             lastPitLap = 0;
         }
@@ -44,6 +57,7 @@ const createLeaderboard = (data) => {
         let driverNum = driver.vehicle_number;
         let dvpClock = driver.is_on_dvp;
         let onTrack = driver.is_on_track;
+        let driverStatus = driver.status;
 
         let manufacturerIMG;
 
@@ -87,11 +101,16 @@ const createLeaderboard = (data) => {
         var onTrackHighlight;
         if(onTrack) {
             onTrackHighlight = "#ffffff00";
-        } else {
-            if (currentLap - lastPitLap <= 3){
-                onTrackHighlight = $("html").css("--Color_LightYellow"); //I think it shows onTrack = false if pitting
-            } else {
-                onTrackHighlight = "#8F0000";
+        } else { //onTrack = false if pitting & in garage
+            switch (driverStatus) {
+                case 1: // running (?)
+                    onTrackHighlight = $("html").css("--Color_LightYellow");
+                    break
+                case 3: // out of race (?) - looked like status 6 happened before status 3, 6 = pushing to garage?
+                    onTrackHighlight = "#8F0000";
+                    break
+                default:
+                    onTrackHighlight = "#FF10F0"; //neon pink to alert me to fix
             }
         };
 
@@ -184,6 +203,8 @@ const updateContent = () => {
 
     // Fetch data every 10 seconds (source only refreshes every 30 seconds)
     setInterval(setUp, 10000);
+
+    getLiveOps();
 
 
     // Fetch data every 1 seconds

@@ -46,10 +46,7 @@ Available Driver Data
         Pit out elapsed time
         Pit in rank
         Pit out rank
-    ? Status
     Sponsor name
-    * On track -> Color "behind" value?
-    * On DVP -> Color "behind" value?
 
 Available Race Data
     * Elapsed time
@@ -73,6 +70,7 @@ Available Race Data
     https://cf.nascar.com/cacher/2023/1/5303/weekend-feed.json
 'pointsURL'
     https://cf.nascar.com/live/feeds/series_1/5303/live_points.json
+        Live season points as they run (not sorted by playoff standings)
 'liveRaceURL'
     https://cf.nascar.com/live/feeds/series_1/5303/live_feed.json
 'stagePointsURL'
