@@ -42,7 +42,7 @@ const createLeaderboard = (data) => {
         let lastPitLap;
         let driverPitStopsFiltered;
 
-        if (driverPitStops.length > 1) {
+        if (driverPitStops.length > 1 && driverPitStops.filter(v=> v.pit_in_elapsed_time > 0).length > 1) {
             driverPitStopsFiltered = driverPitStops.filter(v=> v.pit_in_elapsed_time > 0); // filters out 0 second pit stops
             lastPitLap = driverPitStopsFiltered[driverPitStopsFiltered.length - 1].pit_in_leader_lap; //pit_in_lap_count is driver's lap, pit_in_leader_lap is race lap
         } else {
@@ -109,7 +109,11 @@ const createLeaderboard = (data) => {
                 case 3: // out of race (?)
                     onTrackHighlight = "#8F0000";
                     break
-                case 6: // looked like status 6 happened before status 3, 6 = pushing to garage?, Stenhouse status 6 when car on fire and never went to 3
+                case 6:
+                    /*
+                    looked like status 6 happened before status 3 for Lally, who was on DVP
+                    Stenhouse status 6 when car on fire and went to 3 only after race complete. Not on DVP, maybe 6 means in garage but not necessarily OUT (although the fire really means out...)
+                    */
                     onTrackHighlight = "#B80000"; // brighter red to study
                     break
                 default:
