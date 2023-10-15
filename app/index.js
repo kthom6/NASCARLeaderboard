@@ -81,10 +81,10 @@ const createLeaderboard = (data) => {
          };
 
         var driverHighlight;
-        if (driverName == "AJ Allmendinger"
-            || driverName == "Ross Chastain (P)"
-            || driverName == "Mike Rockenfeller"
-            || driverName == "Chase Elliott (P)") {
+        if (driverName == "Justin Haley"
+            || driverName == "Carson Hocevar(i)"
+            || driverName == "Alex Bowman"
+            || driverName == "Kyle Larson (P)") {
 //            driverHighlight = $("html").css("--Color_LightGray");
             driverHighlight = "#606061"
         } else {
