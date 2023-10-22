@@ -81,10 +81,10 @@ const createLeaderboard = (data) => {
          };
 
         var driverHighlight;
-        if (driverName == "Justin Haley"
-            || driverName == "Carson Hocevar(i)"
-            || driverName == "Alex Bowman"
-            || driverName == "Kyle Larson (P)") {
+        if (driverName == "Daniel Suarez"
+            || driverName == "John Hunter Nemechek(i)"
+//            || driverName == ""
+            || driverName == "Ryan Blaney (P)") {
 //            driverHighlight = $("html").css("--Color_LightGray");
             driverHighlight = "#606061"
         } else {
@@ -106,8 +106,18 @@ const createLeaderboard = (data) => {
                 case 1: // running (?)
                     onTrackHighlight = $("html").css("--Color_LightYellow");
                     break
+                case 2: // not posting a Q time (?)
+                    // based on 46, 30, 25 being 2 during truck qual 10/20
+                    onTrackHighlight= "#e15e15" // orange
+                    break
                 case 3: // out of race (?)
-                    onTrackHighlight = "#8F0000";
+                    onTrackHighlight = "#8F0000"; // dark red
+                    break
+                case 4: // ?
+                    onTrackHighlight= "#3FAD30" // green
+                    break
+                case 5: // ?
+                    onTrackHighlight= "#2DD5DF" // aqua
                     break
                 case 6:
                     /*
