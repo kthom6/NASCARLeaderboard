@@ -81,10 +81,10 @@ const createLeaderboard = (data) => {
          };
 
         var driverHighlight;
-        if (driverName == "Chase Briscoe"
+        if (driverName == "Joey Logano"
             || driverName == "Todd Gilliland"
 //            || driverName == ""
-            || driverName == "Alex Bowman") {
+            || driverName == "Harrison Burton") {
 //            driverHighlight = $("html").css("--Color_LightGray");
             driverHighlight = "#606061"
         } else {
