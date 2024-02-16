@@ -2,6 +2,8 @@
 
 var liveFeedData;
 var liveOps;
+var settings;
+var highlightedDrivers = [];
 
 // This issues the GET request
 const getLiveFeed = () => {
@@ -28,7 +30,7 @@ const getLiveOps = () => {
     });
 };
 
-const createLeaderboard = (data) => {
+const createLeaderboard = (data, highlightedDrivers) => {
     $("#leaderboard tbody").empty(); //clear existing leaderboard
 
     let currentLap = data.lap_number;
@@ -81,10 +83,7 @@ const createLeaderboard = (data) => {
          };
 
         var driverHighlight;
-        if (driverName == "Joey Logano"
-            || driverName == "Todd Gilliland"
-//            || driverName == ""
-            || driverName == "Harrison Burton") {
+        if ( highlightedDrivers.includes(driverName) ) {
 //            driverHighlight = $("html").css("--Color_LightGray");
             driverHighlight = "#606061"
         } else {
@@ -155,8 +154,8 @@ const createLeaderboard = (data) => {
 
 };
 
-const getRaceDetails = (data) => {
-    $(".raceDetails").empty(); //clear existing details
+const getFlagDetails = (data) => {
+    $(".flagDetails").empty(); //clear existing details
 
     let totalLaps = data.laps_in_race;
     let currentLap = data.lap_number;
@@ -201,15 +200,118 @@ const getRaceDetails = (data) => {
 
     let lapDetails = $(`<h1 style="background-color: ${flagColor}; background-image: ${flagImage};">Lap ${currentLap} / ${totalLaps}</h1>`);
 
-    $(".raceDetails").append(lapDetails);
+    $(".flagDetails").append(lapDetails);
 //    console.log(lapDetails);
+}
+
+const getRaceDetails = (data) => {
+    $(".raceDetails").empty(); //clear existing details
+
+    let raceName = data.run_name;
+    let trackName = data.track_name;
+    let seriesNum = data.series_id;
+
+    var seriesName;
+    var seriesLogo;
+
+    switch (seriesNum) {
+        case 1:
+            seriesName = "Cup";
+//            seriesLogo = "nascar_cup_series_logo.svg";
+            seriesLogo = "https://www.nascar.com/wp-content/uploads/sites/7/2023/05/12/nascar_cup_series_logo.svg";
+            break;
+        case 2:
+            seriesName = "Xfinity?";
+            seriesLogo = "https://www.nascar.com/wp-content/uploads/sites/7/2023/05/12/nascar_xfinity_series_logos.svg";
+            break;
+        case 3:
+            seriesName = "Truck?";
+            seriesLogo = "https://www.nascar.com/wp-content/uploads/sites/7/2023/05/12/nascar_craftsman_truck_series_logo.svg";
+            break;
+        case 4:
+            seriesName = "Arca?";
+            seriesLogo = "https://www.nascar.com/wp-content/uploads/sites/7/2021/04/24/arcalogoftr.jpg";
+            break;
+        default:
+            seriesName = "Series?";
+            break;
+    }
+
+    const seriesImage = `url('${seriesLogo}')`;
+    const raceDetailsDiv = document.querySelector('.raceDetails');
+
+    raceDetailsDiv.style.backgroundImage = seriesImage;
+    raceDetailsDiv.style.backgroundSize = 'auto 50%';
+    raceDetailsDiv.style.backgroundPosition = 'right bottom';
+    raceDetailsDiv.style.backgroundRepeat = 'no-repeat';
+
+    let raceDetails = $(`<h1>${raceName}</h1><h2>${trackName}</h2>`);
+
+    $(".raceDetails").append(raceDetails);
+
+
+}
+
+const createSettingsDrivers = (data) => {
+//    $("").empty();
+
+    let drivers = data.vehicles;
+
+    // Sort drivers by name
+    drivers.sort((a, b) => {
+        let nameA = a.driver.last_name.toLowerCase(); // Case-insensitive sorting
+        let nameB = b.driver.last_name.toLowerCase();
+
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+    });
+
+    // Append sorted drivers as checkboxes
+    drivers.forEach((driver) => {
+        let driverName = driver.driver.full_name;
+        let driverId = driver.driver.driver_id;
+
+        let driverSelection = $(`
+        <input type="checkbox" id="driver${driverId}" name="item" value="${driverName}">
+        <label for="driver${driverId}">${driverName}</label><br>
+        `);
+
+        $(".driverSelection").append(driverSelection);
+    });
+
+}
+
+function openSettings() {
+    console.log("hello");
+    settings.classList.add("settings-open");
+}
+
+function closeSettings() {
+    console.log("goodbye");
+    settings.classList.remove("settings-open");
+}
+
+function saveSettings() {
+    console.log("pending save: ", highlightedDrivers);
+
+    highlightedDrivers = [];
+
+    const checkboxes = document.querySelectorAll('input[name="item"]:checked');
+    checkboxes.forEach((checkbox) => {
+        highlightedDrivers.push(checkbox.value);
+    })
+
+    console.log("saving", highlightedDrivers);
+    closeSettings();
+    setUp(); // Resets leaderboard w/ highlights
 }
 
 
 const setUp = () => {
     getLiveFeed();
-    createLeaderboard(liveFeedData);
-    getRaceDetails(liveFeedData);
+    createLeaderboard(liveFeedData, highlightedDrivers);
+    getFlagDetails(liveFeedData);
 
 
 };
@@ -218,10 +320,14 @@ const setUp = () => {
 const updateContent = () => {
     setUp();
 
+    settings = document.getElementById("settings");
+    createSettingsDrivers(liveFeedData);
+
     // Fetch data every 5 seconds (source only refreshes every 30 seconds)
     setInterval(setUp, 5000);
 
     getLiveOps();
+    getRaceDetails(liveFeedData);
 
 
     // Fetch data every 1 seconds

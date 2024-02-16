@@ -21,6 +21,13 @@ html{
 }
 
 .raceDetails{
+    width: 650px; /* Change to 100% once I have more on page */
+    text-align: center;
+    color: #c3c3c3;
+    margin-bottom: 16px;
+}
+
+.flagDetails{
     width: 650px;
     text-align: center;
     background-position: center; /* Center the image */
@@ -38,8 +45,66 @@ th, td {
   padding-right: 4px;
 }
 
+h1, h2, h3 {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
 .leaderboard tbody tr:nth-child(even) {
   background-color: #2d2d2e;
 }
 
 .leaderboard tbody tr:hover {background-color: #4c4c4d;}
+
+.btnSettings {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.settings {
+    width: 400px;
+    height: 600px;
+    background: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 16px;
+    visibility: hidden;
+}
+
+.settings-open {
+    visibility: visible;
+}
+
+.popup button {
+    width: 25%;
+    margin-top: 50px;
+    padding: 4px 0;
+    color: black;
+    border: 0;
+    outline: none;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.popup .btnSave {
+    background: green;
+    margin-left: 8px;
+}
+
+.popup .btnCancel {
+    background: pink;
+    margin-right: 8px;
+}
+
+.driverSelection {
+    height: 75%;
+    width: 50%;
+    overflow-y: auto;
+    white-space: nowrap;
+    text-align: left;
+}

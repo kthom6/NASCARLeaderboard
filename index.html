@@ -11,7 +11,23 @@
 </head>
 <body>
 
+    <button class="btnSettings" onclick="openSettings()">
+        <img src="/media/settings.png" width="24">
+    </button>
+
+    <div class="settings" id="settings">
+        <h2>Settings</h2>
+
+        <div class="driverSelection"></div>
+
+        <button type="button" class="btnCancel" onclick="closeSettings()">Cancel</button>
+        <button type="button" class="btnSave" onclick="saveSettings()">Save</button>
+    </div>
+
     <div class="raceDetails">
+    </div>
+
+    <div class="flagDetails">
     </div>
 
     <div class="leaderboard">
@@ -38,6 +54,7 @@
             </tbody>
         </table>
     </div>
+
 </body>
 
 <footer>

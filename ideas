@@ -10,7 +10,7 @@
 * Highlight average position if running position is better?
 
 * Add live points leaderboard for playoff drivers
-    https://cf.nascar.com/live/feeds/series_1/5303/live_points.json
+    https://cf.nascar.com/live/feeds/series_1/5383/live_points.json
     Can show points earned by stage, tie breaker details (position in each race in segment)
 
 
@@ -67,39 +67,39 @@ Available Race Data
 
 
 'raceURL'
-    * https://cf.nascar.com/cacher/2023/1/5303/weekend-feed.json
+    * https://cf.nascar.com/cacher/2024/1/5383/weekend-feed.json
         Shows
 'pointsURL'
-    https://cf.nascar.com/live/feeds/series_1/5303/live_points.json
+    https://cf.nascar.com/live/feeds/series_1/5383/live_points.json
         Live season points as they run (not sorted by playoff standings)
 'liveRaceURL'
-    https://cf.nascar.com/live/feeds/series_1/5303/live_feed.json
+    https://cf.nascar.com/live/feeds/series_1/5383/live_feed.json
 'stagePointsURL'
-    https://cf.nascar.com/cacher/2023/1/5303/live-stage-points.json
+    https://cf.nascar.com/cacher/2024/1/5383/live-stage-points.json
 'snappyTVURL'
-    https://cf.nascar.com/cacher/2023/1/5303/snappytv.json
+    https://cf.nascar.com/cacher/2024/1/5383/snappytv.json
 'keyMomentsURL'
-    * https://cf.nascar.com/cacher/2023/1/5303/lap-notes.json
+    * https://cf.nascar.com/cacher/2024/1/5383/lap-notes.json
 'lapTimesURL'
-    https://cf.nascar.com/cacher/2023/1/5303/lap-times.json
+    https://cf.nascar.com/cacher/2024/1/5383/lap-times.json
 'driverRecapURL'
-    https://cf.nascar.com/cacher/2023/1/5303/driver-recap.json
+    https://cf.nascar.com/cacher/2024/1/5383/driver-recap.json
 'lapAveragesURL'
-    https://cf.nascar.com/cacher/2023/1/5303/lap-averages.json
+    https://cf.nascar.com/cacher/2024/1/5383/lap-averages.json
 'lapFastURL'
-    https://cf.nascar.com/loopstats/prod/2023/1/5303.json
+    https://cf.nascar.com/loopstats/prod/2024/1/5383.json
 'pitStopDataURL'
-    * https://cf.nascar.com/cacher/live/series_1/5303/live-pit-data.json
+    * https://cf.nascar.com/cacher/live/series_1/5383/live-pit-data.json
 'liveFlagDataURL'
     * https://cf.nascar.com/live/feeds/live-flag-data.json
 'scheduleFeedURL'
-    * https://cf.nascar.com/cacher/2023/race_list_basic.json
+    * https://cf.nascar.com/cacher/2024/race_list_basic.json
         Can get next race id to populate URLs
 'weekendScheduleFeedURL'
-    https://cf.nascar.com/cacher/2023/1/schedule-feed.json
+    https://cf.nascar.com/cacher/2024/1/schedule-feed.json
 * https://cf.nascar.com/cacher/tracks.json
     Can get race track details and image for decorating page
 https://cf.nascar.com/live-ops/live-ops.json
 
-* https://cf.nascar.com/cacher/2023/race_list_basic.json
+* https://cf.nascar.com/cacher/2024/race_list_basic.json
     Quick info about each race in all 3 series (stages, time, qualifying, playoff round, etc)
