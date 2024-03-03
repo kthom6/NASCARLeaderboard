@@ -292,6 +292,7 @@ function closeSettings() {
     settings.classList.remove("settings-open");
 }
 
+// Triggered by "Save" button in Settings
 function saveSettings() {
     console.log("pending save: ", highlightedDrivers);
 

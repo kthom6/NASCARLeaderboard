@@ -10,8 +10,8 @@
 }
 
 html{
-    height: 130%;
     background-color: var(--Color_DarkGray);
+    scrollbar-color: #222222 var(--Color_DarkGray);
 }
 
 .leaderboard{
@@ -62,6 +62,7 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
+/* -------------------------- SETTINGS POP UP -------------------------- */
 .settings {
     width: 400px;
     height: 600px;
@@ -102,9 +103,15 @@ h1, h2, h3 {
 }
 
 .driverSelection {
-    height: 75%;
+    height: 85%;
     width: 50%;
     overflow-y: auto;
     white-space: nowrap;
     text-align: left;
+}
+
+.settingsButtons {
+    width: 100%;
+    margin: 16px;
+    background-color: red;
 }

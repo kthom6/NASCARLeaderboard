@@ -1,11 +1,8 @@
-* Add selection option to choose drivers to highlight
 * Add variable highlighting
     Highlight my selection "brighter" than the others as more focal
     Allow user to select their own highlight colors?
 
 * Filter out the last pit that wasn't real (ex. red flag but didn't actually pit)
-
-* Remove (P) / (i) / # / etc. from name?
 
 * Highlight average position if running position is better?
 
@@ -19,7 +16,7 @@ Questions during race:
         Solution: Caution tracker
 
 
-
+* Add Google Analytics to view website traffic: https://www.quora.com/Is-it-possible-to-see-how-many-visits-your-GitHub-pages-site-got
 
 
 
